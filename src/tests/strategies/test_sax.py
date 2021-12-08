@@ -8,14 +8,12 @@ from strategies.sax import SAXStrategy
 
 class TestSAXStrategy:
 
-    @pytest.mark.skip()
     def test_all(self, data_dir):
         filepath = os.path.join(data_dir, "sample1.xml")
         strategy = SAXStrategy()
         scientists = strategy.all(filepath)
         assert len(scientists) == 5
 
-    @pytest.mark.skip()
     def test_find(self, data_dir):
         filepath = os.path.join(data_dir, "sample1.xml")
         strategy = SAXStrategy()
@@ -29,7 +27,6 @@ class TestSAXStrategy:
         scientists = strategy.find(filepath, query)
         assert len(scientists) == 2
 
-    @pytest.mark.skip()
     def test_find_empty_query(self, data_dir):
         filepath = os.path.join(data_dir, "sample1.xml")
         strategy = SAXStrategy()

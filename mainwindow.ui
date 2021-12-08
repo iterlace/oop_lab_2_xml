@@ -315,15 +315,15 @@
     </property>
     <addaction name="action_open"/>
    </widget>
-   <widget class="QMenu" name="menuHelp">
+   <widget class="QMenu" name="menu_help">
     <property name="title">
      <string>Help</string>
     </property>
-    <addaction name="actionHelp"/>
-    <addaction name="actionAbout"/>
+    <addaction name="action_help"/>
+    <addaction name="action_about"/>
    </widget>
    <addaction name="menu_file"/>
-   <addaction name="menuHelp"/>
+   <addaction name="menu_help"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="action_open">
@@ -331,12 +331,12 @@
     <string>Open</string>
    </property>
   </action>
-  <action name="actionHelp">
+  <action name="action_help">
    <property name="text">
     <string>Help</string>
    </property>
   </action>
-  <action name="actionAbout">
+  <action name="action_about">
    <property name="text">
     <string>About</string>
    </property>

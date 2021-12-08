@@ -11,7 +11,7 @@ class BS4Strategy(BaseStrategy):
 
     def _tree(self, filepath: str) -> bs4.BeautifulSoup:
         with open(filepath, "r") as f:
-            tree = bs4.BeautifulSoup(f.read())
+            tree = bs4.BeautifulSoup(f.read(), "xml")
             return tree
 
     def _parse(self, element: bs4.element.Tag) -> Scientist:

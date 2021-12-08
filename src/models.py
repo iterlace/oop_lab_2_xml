@@ -14,6 +14,18 @@ class Scientist:
     post_start: dt.date
     post_end: Optional[dt.date]
 
+    @classmethod
+    def empty(cls):
+        return cls(
+            full_name="",
+            faculty="",
+            cathedra="",
+            laboratory="",
+            post="",
+            post_start=dt.datetime.now().date(),
+            post_end=None,
+        )
+
 
 @dataclasses.dataclass
 class ScientistQuery:

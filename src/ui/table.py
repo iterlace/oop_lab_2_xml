@@ -3,13 +3,9 @@ import functools
 from typing import Union
 from typing import Optional, Any, Tuple, List, Dict, Type
 
-from PyQt6.QtGui import QAction
-from PyQt6.QtWidgets import QTableWidget, QApplication, QMainWindow, QMenu, QMessageBox, QHeaderView
-from PyQt6.QtWidgets import QFileDialog, QMessageBox, QTableWidget, QTableWidgetItem
+from PyQt6.QtWidgets import QHeaderView, QTableWidget, QTableWidgetItem
 
-from models import Scientist, ScientistQuery
-from common import str2date
-from strategies import BaseStrategy, DOMStrategy, BS4Strategy, SAXStrategy
+from models import Scientist
 
 
 class TableWrapper:

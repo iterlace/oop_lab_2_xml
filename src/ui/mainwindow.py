@@ -7,7 +7,6 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QMenu, QMessageBox, QHead
 from PyQt6.QtWidgets import QFileDialog, QMessageBox, QTableWidget, QTableWidgetItem
 
 from models import Scientist, ScientistQuery
-from common import str2date
 from strategies import BaseStrategy, DOMStrategy, BS4Strategy, SAXStrategy
 
 from .mainwindow_ui import Ui_MainWindow
@@ -26,6 +25,8 @@ class MainWindow(QMainWindow):
         self.filters = Filters(self.ui)
 
         self.ui.action_open.triggered.connect(self.on_open)
+        self.ui.action_help.triggered.connect(self.on_help)
+        self.ui.action_about.triggered.connect(self.on_about)
         self.ui.button_search.clicked.connect(self.on_search)
         self.ui.button_clean.clicked.connect(self.on_clean)
 
@@ -71,3 +72,21 @@ class MainWindow(QMainWindow):
         self.filters.deselect()
         scientists = self.strategy.all(self.filepath)
         self.ui.tableWidget.fill_scientists(scientists)
+
+    def on_about(self):
+        QMessageBox.information(
+            self,
+            "About",
+            f"Version: undefined\n"
+            f"Developed by: Evgeniy Goncharenko\n"
+            f"Source code: https://github.com/iterlace/oop_lab_2_xml",
+        )
+
+    def on_help(self):
+        QMessageBox.information(
+            self,
+            "Help",
+            f"1. First, open an .xml file with a valid schema\n"
+            f"2. You can apply filters by each field and click \"Select\" to apply them\n"
+            f"3. To convert selected table to the .HTML format, click the corresponding button.\n"
+        )
