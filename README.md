@@ -2,7 +2,7 @@
 
 ### 1. Initialize virtual environment && install dependencies
 ```bash
-python3.9 -m pip install poerty
+python3.9 -m pip install poetry
 poetry install
 
 poetry shell
