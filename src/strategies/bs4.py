@@ -2,13 +2,13 @@ from typing import List
 
 import bs4
 
-from models import ScientistQuery, Scientist
 from common import str2date
+from models import Scientist, ScientistQuery
+
 from .base import BaseStrategy
 
 
 class BS4Strategy(BaseStrategy):
-
     def _tree(self, filepath: str) -> bs4.BeautifulSoup:
         with open(filepath, "r") as f:
             tree = bs4.BeautifulSoup(f.read(), "xml")

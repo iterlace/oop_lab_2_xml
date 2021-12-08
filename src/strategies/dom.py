@@ -1,15 +1,14 @@
 from typing import List
-import datetime as dt
 
 from lxml import etree
 
-from models import ScientistQuery, Scientist
 from common import str2date
+from models import Scientist, ScientistQuery
+
 from .base import BaseStrategy
 
 
 class DOMStrategy(BaseStrategy):
-
     def _tree(self, filepath: str) -> etree.Element:
         with open(filepath, "rb") as f:
             tree = etree.XML(f.read())
@@ -36,7 +35,7 @@ class DOMStrategy(BaseStrategy):
         tree = self._tree(filepath)
         clauses = []
         for field, value in query.__dict__.items():
-            clauses.append(f"{field}[contains(text(), \"{value}\")]")
+            clauses.append(f'{field}[contains(text(), "{value}")]')
 
         clause = " and ".join(clauses)
         nodes = tree.xpath(f"/scientists/scientist[{clause}]")

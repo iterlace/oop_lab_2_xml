@@ -5,7 +5,6 @@ from models import Scientist, ScientistQuery
 
 
 class BaseStrategy(abc.ABC):
-
     def __init__(self):
         pass
 

@@ -1,13 +1,10 @@
 import os.path
 
-import pytest
-
-from models import Scientist, ScientistQuery
+from models import ScientistQuery
 from strategies.bs4 import BS4Strategy
 
 
 class TestBS4Strategy:
-
     def test_all(self, data_dir):
         filepath = os.path.join(data_dir, "sample1.xml")
         strategy = BS4Strategy()

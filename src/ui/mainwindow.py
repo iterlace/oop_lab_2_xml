@@ -1,23 +1,17 @@
-import sys
-import functools
-from typing import Optional, Any, Tuple, List, Dict, Type
 import webbrowser
+from typing import Optional
 
-from PyQt6.QtGui import QAction
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMenu, QMessageBox, QHeaderView
-from PyQt6.QtWidgets import QFileDialog, QMessageBox, QTableWidget, QTableWidgetItem
+from PyQt6.QtWidgets import QFileDialog, QMainWindow, QMessageBox
 
-from models import Scientist, ScientistQuery
-from strategies import BaseStrategy, DOMStrategy, BS4Strategy, SAXStrategy
+from exporter import TableExporter
+from strategies import BaseStrategy, BS4Strategy, DOMStrategy, SAXStrategy
 
+from .filters import Filters
 from .mainwindow_ui import Ui_MainWindow
 from .table import TableWrapper
-from .filters import Filters
-from exporter import TableExporter
 
 
 class MainWindow(QMainWindow):
-
     def __init__(self):
         super().__init__()
         self.ui = Ui_MainWindow()
@@ -112,6 +106,6 @@ class MainWindow(QMainWindow):
             self,
             "Help",
             f"1. First, open an .xml file with a valid schema\n"
-            f"2. You can apply filters by each field and click \"Select\" to apply them\n"
-            f"3. To convert selected table to the .HTML format, click the corresponding button.\n"
+            f'2. You can apply filters by each field and click "Select" to apply them\n'
+            f"3. To convert selected table to the .HTML format, click the corresponding button.\n",
         )

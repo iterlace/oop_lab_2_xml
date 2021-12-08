@@ -1,5 +1,5 @@
 import os
-from typing import List, Optional, Dict, Any
+from typing import List
 
 from jinja2 import Template
 
@@ -7,7 +7,6 @@ from models import Scientist
 
 
 class TableExporter:
-
     @classmethod
     def render(cls, objects: List[Scientist]):
         root_dir = os.path.dirname(os.path.realpath(__file__))

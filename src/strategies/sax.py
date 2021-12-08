@@ -1,13 +1,13 @@
-from typing import List, Optional, Dict, Any
 import xml.sax
+from typing import Any, Dict, List, Optional
 
-from models import ScientistQuery, Scientist
 from common import str2date
+from models import Scientist, ScientistQuery
+
 from .base import BaseStrategy
 
 
 class SAXStrategy(BaseStrategy):
-
     def __init__(self):
         super(SAXStrategy, self).__init__()
 
@@ -35,7 +35,7 @@ class SAXHandler(xml.sax.handler.ContentHandler):
         "laboratory",
         "post",
         "post_start",
-        "post_end"
+        "post_end",
     ]
 
     def __init__(self, query: ScientistQuery):
@@ -87,4 +87,3 @@ class SAXHandler(xml.sax.handler.ContentHandler):
             if value not in data.get(field, ""):
                 return False
         return True
-

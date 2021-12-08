@@ -1,7 +1,6 @@
-from typing import Optional
-
 import dataclasses
 import datetime as dt
+from typing import Optional
 
 
 @dataclasses.dataclass
@@ -20,7 +19,7 @@ class Scientist:
             full_name="",
             faculty="",
             cathedra="",
-            laboratory="",
+            laboratory=0,
             post="",
             post_start=dt.datetime.now().date(),
             post_end=None,

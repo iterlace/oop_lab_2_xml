@@ -1,20 +1,11 @@
-import sys
-import functools
-from typing import Optional, Any, Tuple, List, Dict, Type
-
-from PyQt6.QtGui import QAction
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMenu, QMessageBox, QHeaderView
-from PyQt6.QtWidgets import QFileDialog, QMessageBox, QTableWidget, QTableWidgetItem
+from typing import List
 
 from models import Scientist, ScientistQuery
-from common import str2date
-from strategies import BaseStrategy, DOMStrategy, BS4Strategy, SAXStrategy
 
 from .mainwindow_ui import Ui_MainWindow
 
 
 class Filters:
-
     def __init__(self, ui: Ui_MainWindow):
         self.ui = ui
 
@@ -49,4 +40,3 @@ class Filters:
 
         query = ScientistQuery(**fields)
         return query
-

@@ -1,7 +1,4 @@
-import sys
-import functools
-from typing import Union
-from typing import Optional, Any, Tuple, List, Dict, Type
+from typing import List, Type, Union
 
 from PyQt6.QtWidgets import QHeaderView, QTableWidget, QTableWidgetItem
 
@@ -28,11 +25,13 @@ class TableWrapper:
     def __getattr__(self, attr):
         orig_attr = self.wrapped_class.__getattribute__(attr)
         if callable(orig_attr):
+
             def hooked(*args, **kwargs):
                 result = orig_attr(*args, **kwargs)
                 if result == self.wrapped_class:
                     return self
                 return result
+
             return hooked
         else:
             return orig_attr
@@ -54,7 +53,9 @@ class TableWrapper:
                     scientist.post_end.strftime("%d.%m.%Y"),
                 )
             else:
-                post = "{} ({})".format(scientist.post, scientist.post_start.strftime("%d.%m.%Y"))
+                post = "{} ({})".format(
+                    scientist.post, scientist.post_start.strftime("%d.%m.%Y")
+                )
             self.setItem(row, 4, self._build_item(post))
         self.horizontalHeader().setSectionResizeMode(
             QHeaderView.ResizeMode.ResizeToContents
