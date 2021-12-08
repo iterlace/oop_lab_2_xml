@@ -1,6 +1,7 @@
 import sys
 import functools
 from typing import Optional, Any, Tuple, List, Dict, Type
+import webbrowser
 
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMenu, QMessageBox, QHeaderView
@@ -12,6 +13,7 @@ from strategies import BaseStrategy, DOMStrategy, BS4Strategy, SAXStrategy
 from .mainwindow_ui import Ui_MainWindow
 from .table import TableWrapper
 from .filters import Filters
+from exporter import TableExporter
 
 
 class MainWindow(QMainWindow):
@@ -28,6 +30,7 @@ class MainWindow(QMainWindow):
         self.ui.action_help.triggered.connect(self.on_help)
         self.ui.action_about.triggered.connect(self.on_about)
         self.ui.button_search.clicked.connect(self.on_search)
+        self.ui.button_convert.clicked.connect(self.on_convert)
         self.ui.button_clean.clicked.connect(self.on_clean)
 
         self.filepath: Optional[str] = None
@@ -62,6 +65,7 @@ class MainWindow(QMainWindow):
     def on_search(self):
         if not self.filepath:
             return
+
         query = self.filters.get_query()
         scientists = self.strategy.find(self.filepath, query)
         self.ui.tableWidget.fill_scientists(scientists)
@@ -69,9 +73,30 @@ class MainWindow(QMainWindow):
     def on_clean(self):
         if not self.filepath:
             return
+
         self.filters.deselect()
         scientists = self.strategy.all(self.filepath)
         self.ui.tableWidget.fill_scientists(scientists)
+
+    def on_convert(self):
+        if not self.filepath:
+            return
+
+        filepath, _ = QFileDialog().getSaveFileName(
+            parent=self,
+            caption="Select an export path",
+            filter="HTML (*.html)",
+        )
+        if not filepath:
+            return
+        TableExporter.export(self.ui.tableWidget.scientists, filepath)
+
+        webbrowser.open(f"file://{filepath}", new=2)
+        QMessageBox.information(
+            self,
+            "Exported",
+            f"The table was successfully exported!\n",
+        )
 
     def on_about(self):
         QMessageBox.information(

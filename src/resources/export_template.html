@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <style>
+        * {
+            font-family: "Roboto", sans-serif;
+            font-size: 14pt;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th {
+            padding: 4px 15px;
+            font-size: 15pt;
+            font-weight: bold;
+        }
+
+        td {
+            padding: 2px 5px;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Full name</th>
+        <th>Faculty</th>
+        <th>Cathedra</th>
+        <th>Laboratory</th>
+        <th>Post</th>
+        <th>Service started</th>
+        <th>Service ended</th>
+    </tr>
+    {% for scientist in scientists %}
+    <tr>
+        <td>{{ scientist.full_name }}</td>
+        <td>{{ scientist.faculty }}</td>
+        <td>{{ scientist.cathedra }}</td>
+        <td>{{ scientist.laboratory }}</td>
+        <td>{{ scientist.post }}</td>
+        <td>{{ scientist.post_start.strftime("%d.%m.%Y") }}</td>
+        {% if scientist.post_end %}
+        <td>{{ scientist.post_end.strftime("%d.%m.%Y") }}</td>
+        {% else %}
+        <td>-</td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

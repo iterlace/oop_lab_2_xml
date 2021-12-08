@@ -23,6 +23,8 @@ class TableWrapper:
         self.setHorizontalHeaderLabels(self.columns)
         self.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
 
+        self.scientists: List[Scientist] = []
+
     def __getattr__(self, attr):
         orig_attr = self.wrapped_class.__getattribute__(attr)
         if callable(orig_attr):
@@ -36,6 +38,7 @@ class TableWrapper:
             return orig_attr
 
     def fill_scientists(self, scientists: List[Scientist]):
+        self.scientists = scientists.copy()
         self.setRowCount(0)
         self.setRowCount(len(scientists))
         for row, scientist in enumerate(scientists):
