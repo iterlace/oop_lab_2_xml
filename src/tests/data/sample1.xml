@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scientists>
+    <scientist>
+        <full_name>Тарас Кличко</full_name>
+        <faculty>ФКНК</faculty>
+        <cathedra>ТК</cathedra>
+        <laboratory>24</laboratory>
+        <post>Доцент</post>
+        <post_start>2015-11-01</post_start>
+        <post_end> </post_end>
+    </scientist>
+    <scientist>
+        <full_name>Панас Бичко</full_name>
+        <faculty>ФКНК</faculty>
+        <cathedra>МІ</cathedra>
+        <laboratory>65</laboratory>
+        <post>Професор</post>
+        <post_start>2020-12-05</post_start>
+        <post_end> </post_end>
+    </scientist>
+    <scientist>
+        <full_name>Мартин Онучко</full_name>
+        <faculty>ІФ</faculty>
+        <cathedra>ІФК</cathedra>
+        <laboratory>21</laboratory>
+        <post>Професор</post>
+        <post_start>2016-09-01</post_start>
+        <post_end> </post_end>
+    </scientist>
+    <scientist>
+        <full_name>Анатолій Боїчко</full_name>
+        <faculty>ІФ</faculty>
+        <cathedra>КФІ</cathedra>
+        <laboratory>12</laboratory>
+        <post>Доцент</post>
+        <post_start>2015-11-01</post_start>
+        <post_end> </post_end>
+    </scientist>
+    <scientist>
+        <full_name>Арнольд Попічко</full_name>
+        <faculty>ФКНК</faculty>
+        <cathedra>ТК</cathedra>
+        <laboratory>24</laboratory>
+        <post>Доцент</post>
+        <post_start>2011-04-16</post_start>
+        <post_end>2019-08-21</post_end>
+    </scientist>
+</scientists>
