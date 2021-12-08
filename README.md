@@ -1,11 +1,14 @@
-# Installation
+# Setting environment up
 
-### 1. Install ANTLR, following instructions from the [official site](https://www.antlr.org/)
-
-### 2. Initialize virtual environment && install dependencies
+### 1. Initialize virtual environment && install dependencies
 ```bash
-python3 -m pip install poerty
+python3.9 -m pip install poerty
 poetry install
 
 poetry shell
+```
+
+### 2. Run the application
+```bash
+python src/main.py
 ```
