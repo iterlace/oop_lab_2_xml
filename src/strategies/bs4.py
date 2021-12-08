@@ -9,8 +9,8 @@ from .base import BaseStrategy
 
 class BS4Strategy(BaseStrategy):
 
-    def _tree(self) -> bs4.BeautifulSoup:
-        with open(self._filepath, "r") as f:
+    def _tree(self, filepath: str) -> bs4.BeautifulSoup:
+        with open(filepath, "r") as f:
             tree = bs4.BeautifulSoup(f.read())
             return tree
 
@@ -26,14 +26,14 @@ class BS4Strategy(BaseStrategy):
         )
         return scientist
 
-    def all(self) -> List[Scientist]:
-        tree = self._tree()
+    def all(self, filepath: str) -> List[Scientist]:
+        tree = self._tree(filepath)
         nodes = tree.find("scientists").find_all("scientist")
         scientists = [self._parse(node) for node in nodes]
         return scientists
 
-    def find(self, query: ScientistQuery) -> List[Scientist]:
-        tree = self._tree()
+    def find(self, filepath: str, query: ScientistQuery) -> List[Scientist]:
+        tree = self._tree(filepath)
         root = tree.find("scientists")
         scientists = []
         for node in root.find_all("scientist"):

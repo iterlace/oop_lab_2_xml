@@ -6,13 +6,13 @@ from models import Scientist, ScientistQuery
 
 class BaseStrategy(abc.ABC):
 
-    def __init__(self, filepath: str):
-        self._filepath = filepath
+    def __init__(self):
+        pass
 
     @abc.abstractmethod
-    def all(self) -> List[Scientist]:
+    def all(self, filepath: str) -> List[Scientist]:
         ...
 
     @abc.abstractmethod
-    def find(self, query: ScientistQuery) -> List[Scientist]:
+    def find(self, filepath: str, query: ScientistQuery) -> List[Scientist]:
         ...

@@ -10,8 +10,8 @@ from .base import BaseStrategy
 
 class DOMStrategy(BaseStrategy):
 
-    def _tree(self) -> etree.Element:
-        with open(self._filepath, "rb") as f:
+    def _tree(self, filepath: str) -> etree.Element:
+        with open(filepath, "rb") as f:
             tree = etree.XML(f.read())
             return tree
 
@@ -27,13 +27,13 @@ class DOMStrategy(BaseStrategy):
         )
         return scientist
 
-    def all(self) -> List[Scientist]:
-        nodes = self._tree().xpath("/scientists/scientist")
+    def all(self, filepath: str) -> List[Scientist]:
+        nodes = self._tree(filepath).xpath("/scientists/scientist")
         scientists = [self._parse(node) for node in nodes]
         return scientists
 
-    def find(self, query: ScientistQuery) -> List[Scientist]:
-        tree = self._tree()
+    def find(self, filepath: str, query: ScientistQuery) -> List[Scientist]:
+        tree = self._tree(filepath)
         clauses = []
         for field, value in query.__dict__.items():
             clauses.append(f"{field}[contains(text(), \"{value}\")]")

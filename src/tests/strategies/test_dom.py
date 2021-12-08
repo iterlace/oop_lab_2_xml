@@ -10,13 +10,13 @@ class TestDOMStrategy:
 
     def test_all(self, data_dir):
         filepath = os.path.join(data_dir, "sample1.xml")
-        strategy = DOMStrategy(filepath)
-        scientists = strategy.all()
+        strategy = DOMStrategy()
+        scientists = strategy.all(filepath)
         assert len(scientists) == 5
 
     def test_find(self, data_dir):
         filepath = os.path.join(data_dir, "sample1.xml")
-        strategy = DOMStrategy(filepath)
+        strategy = DOMStrategy()
         query = ScientistQuery(
             full_name="",
             faculty="ФКНК",
@@ -24,12 +24,12 @@ class TestDOMStrategy:
             laboratory="",
             post="Доцент",
         )
-        scientists = strategy.find(query)
+        scientists = strategy.find(filepath, query)
         assert len(scientists) == 2
 
     def test_find_empty_query(self, data_dir):
         filepath = os.path.join(data_dir, "sample1.xml")
-        strategy = DOMStrategy(filepath)
+        strategy = DOMStrategy()
         query = ScientistQuery(
             full_name="",
             faculty="",
@@ -37,5 +37,5 @@ class TestDOMStrategy:
             laboratory="",
             post="",
         )
-        scientists = strategy.find(query)
+        scientists = strategy.find(filepath, query)
         assert len(scientists) == 5

@@ -6,11 +6,11 @@ from .base import BaseStrategy
 
 class SAXStrategy(BaseStrategy):
 
-    def __init__(self, filepath: str):
-        super(SAXStrategy, self).__init__(filepath)
+    def __init__(self):
+        super(SAXStrategy, self).__init__()
 
-    def all(self) -> List[Scientist]:
+    def all(self, filepath: str) -> List[Scientist]:
         pass
 
-    def find(self, query: ScientistQuery) -> List[Scientist]:
+    def find(self, filepath: str, query: ScientistQuery) -> List[Scientist]:
         pass

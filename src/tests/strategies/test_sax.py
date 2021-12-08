@@ -11,14 +11,14 @@ class TestSAXStrategy:
     @pytest.mark.skip()
     def test_all(self, data_dir):
         filepath = os.path.join(data_dir, "sample1.xml")
-        strategy = SAXStrategy(filepath)
-        scientists = strategy.all()
+        strategy = SAXStrategy()
+        scientists = strategy.all(filepath)
         assert len(scientists) == 5
 
     @pytest.mark.skip()
     def test_find(self, data_dir):
         filepath = os.path.join(data_dir, "sample1.xml")
-        strategy = SAXStrategy(filepath)
+        strategy = SAXStrategy()
         query = ScientistQuery(
             full_name="",
             faculty="ФКНК",
@@ -26,13 +26,13 @@ class TestSAXStrategy:
             laboratory="",
             post="Доцент",
         )
-        scientists = strategy.find(query)
+        scientists = strategy.find(filepath, query)
         assert len(scientists) == 2
 
     @pytest.mark.skip()
     def test_find_empty_query(self, data_dir):
         filepath = os.path.join(data_dir, "sample1.xml")
-        strategy = SAXStrategy(filepath)
+        strategy = SAXStrategy()
         query = ScientistQuery(
             full_name="",
             faculty="",
@@ -40,5 +40,5 @@ class TestSAXStrategy:
             laboratory="",
             post="",
         )
-        scientists = strategy.find(query)
+        scientists = strategy.find(filepath, query)
         assert len(scientists) == 5
