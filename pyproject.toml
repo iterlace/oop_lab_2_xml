@@ -8,6 +8,7 @@ authors = ["Evgeniy Goncharuck <iterlace@gmail.com>"]
 python = "^3.9"
 PyQt6 = "^6.2.1"
 lxml = "^4.6.4"
+beautifulsoup4 = "^4.10.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.4"
