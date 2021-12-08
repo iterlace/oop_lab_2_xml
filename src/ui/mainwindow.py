@@ -12,6 +12,7 @@ from strategies import BaseStrategy, DOMStrategy, BS4Strategy, SAXStrategy
 
 from .mainwindow_ui import Ui_MainWindow
 from .table import TableWrapper
+from .filters import Filters
 
 
 class MainWindow(QMainWindow):
@@ -22,36 +23,14 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
 
         self.ui.tableWidget = TableWrapper(self.ui.tableWidget)
+        self.filters = Filters(self.ui)
 
         self.ui.action_open.triggered.connect(self.on_open)
+        self.ui.button_search.clicked.connect(self.on_search)
+        self.ui.button_clean.clicked.connect(self.on_clean)
 
         self.filepath: Optional[str] = None
         self._strategy = None
-
-        self.query_mapping = {
-            self.ui.combo_box_entry_name: "full_name",
-            self.ui.combo_box_entry_faculty: "faculty",
-            self.ui.combo_box_entry_cathedra: "cathedra",
-            self.ui.combo_box_entry_laboratory: "laboratory",
-            self.ui.combo_box_entry_post: "post",
-        }
-
-        self._set_debug_callbacks()
-
-    def _set_debug_callbacks(self):
-        actions = [
-            i for i in dir(self.ui) if "signal" in type(getattr(self.ui, i)).__name__.lower()
-        ]
-        for action in actions:
-
-            def l(__action):
-                @functools.wraps(l)
-                def inner(*args, **kwargs):
-                    print(__action, args, kwargs)
-
-                return inner
-
-            getattr(self.ui, action).connect(l(action))
 
     @property
     def strategy(self) -> BaseStrategy:
@@ -77,12 +56,18 @@ class MainWindow(QMainWindow):
         self.filepath = filepath
         scientists = self.strategy.all(self.filepath)
         self.ui.tableWidget.fill_scientists(scientists)
-        self.fill_filters(scientists)
+        self.filters.fill(scientists)
 
-    def fill_filters(self, scientists: List[Scientist]):
-        for widget, query_field in self.query_mapping.items():
-            widget.clear()
-            widget.addItem("---", None)
-            values = sorted(set(str(getattr(obj, query_field)) for obj in scientists))
-            for val in values:
-                widget.addItem(val, val)
+    def on_search(self):
+        if not self.filepath:
+            return
+        query = self.filters.get_query()
+        scientists = self.strategy.find(self.filepath, query)
+        self.ui.tableWidget.fill_scientists(scientists)
+
+    def on_clean(self):
+        if not self.filepath:
+            return
+        self.filters.deselect()
+        scientists = self.strategy.all(self.filepath)
+        self.ui.tableWidget.fill_scientists(scientists)

@@ -22,3 +22,13 @@ class ScientistQuery:
     cathedra: str
     laboratory: str
     post: str
+
+    @classmethod
+    def empty(cls):
+        return cls(
+            full_name="",
+            faculty="",
+            cathedra="",
+            laboratory="",
+            post="",
+        )
