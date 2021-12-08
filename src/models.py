@@ -20,5 +20,5 @@ class ScientistQuery:
     full_name: str
     faculty: str
     cathedra: str
-    laboratory: int
+    laboratory: str
     post: str
