@@ -109,3 +109,17 @@ class MainWindow(QMainWindow):
             f'2. You can apply filters by each field and click "Select" to apply them\n'
             f"3. To convert selected table to the .HTML format, click the corresponding button.\n",
         )
+
+    def closeEvent(self, event):
+        reply = QMessageBox.question(
+            self,
+            "Message",
+            "Are you sure you want to quit?",
+            QMessageBox.StandardButton.Yes,
+            QMessageBox.StandardButton.No,
+        )
+
+        if reply == QMessageBox.StandardButton.Yes:
+            event.accept()
+        else:
+            event.ignore()
